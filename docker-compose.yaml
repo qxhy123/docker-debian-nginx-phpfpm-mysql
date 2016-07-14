@@ -1,0 +1,39 @@
+version: '2'
+services:
+  mysql:
+    image: daocloud.io/library/mysql:5.6.28
+    volumes:
+      - "./data:/var/lib/mysql"
+    restart: always
+    environment:
+      TERM: xterm
+      MYSQL_ROOT_PASSWORD: 102323
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+  php:
+    image: daocloud.io/php:5.6-fpm
+    network_mode: "host"
+    volumes:
+      - "./site:/var/www/html"
+    restart: always
+#    expose:
+#      - "9000"
+    environment:
+      TERM: xterm
+
+  nginx:
+    image: daocloud.io/library/nginx:1.10
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+      - "./conf.d:/etc/nginx/conf.d"
+      - "./site:/var/www/html"
+    ports:
+      - "80:80"
+      - "8000:8000"
+    links:
+      - mysql:db
+      - php
+    restart: always
+    environment:
+      TERM: xterm
