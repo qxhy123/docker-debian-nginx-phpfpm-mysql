@@ -2,6 +2,7 @@ version: '2'
 services:
   mysql:
     image: daocloud.io/library/mysql:5.6.28
+    container_name: mysql
     volumes:
       - "./data:/var/lib/mysql"
     restart: always
@@ -14,6 +15,7 @@ services:
   php:
     build: ./php
     image: php:0.1
+    container_name: php
     volumes:
       - "./site:/var/www/html"
     restart: always
@@ -25,6 +27,7 @@ services:
 
   nginx:
     image: daocloud.io/library/nginx:1.10
+    container_name: nginx
     volumes:
       - "./nginx.conf:/etc/nginx/nginx.conf"
       - "./conf.d:/etc/nginx/conf.d"
