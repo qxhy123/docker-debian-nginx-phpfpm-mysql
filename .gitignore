@@ -45,13 +45,3 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-site/AdsGo
-site/index.html
-data/mysql
-data/performance_schema
-data/wordpress
-data/auto.cnf
-data/ib_logfile0
-data/ib_logfile1
-data/ibdata1
-conf.d/www.adsgo.com.conf

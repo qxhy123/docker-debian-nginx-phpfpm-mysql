@@ -8,17 +8,18 @@ services:
     environment:
       TERM: xterm
       MYSQL_ROOT_PASSWORD: 102323
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+#      MYSQL_DATABASE: wordpress
+#      MYSQL_USER: wordpress
+#      MYSQL_PASSWORD: wordpress
   php:
-    image: daocloud.io/php:5.6-fpm
-    network_mode: "host"
+    build: ./php
+    image: php:0.1
     volumes:
       - "./site:/var/www/html"
     restart: always
-#    expose:
-#      - "9000"
+    expose:
+     - "9000"
+     - "9001"
     environment:
       TERM: xterm
 
@@ -30,7 +31,8 @@ services:
       - "./site:/var/www/html"
     ports:
       - "80:80"
-      - "8000:8000"
+      - "9000:9000"
+      - "9001:9001"
     links:
       - mysql:db
       - php
