@@ -5,20 +5,25 @@ services:
     container_name: mysql
     volumes:
       - "./data:/var/lib/mysql"
+      - "./mysqlconf:/ect/mysql"
     restart: always
     environment:
       TERM: xterm
       MYSQL_ROOT_PASSWORD: 102323
+    expose:
+     - "3306"
 #      MYSQL_DATABASE: wordpress
 #      MYSQL_USER: wordpress
 #      MYSQL_PASSWORD: wordpress
   php:
-    build: ./php
-    image: php:0.1
+#    build: ./php
+    image: daocloud.io/qxhy123/docker-php:latest
     container_name: php
     volumes:
       - "./site:/var/www/html"
     restart: always
+    links:
+     - mysql:db
     expose:
      - "9000"
      - "9001"
