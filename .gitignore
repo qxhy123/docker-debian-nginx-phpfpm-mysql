@@ -51,3 +51,5 @@ data/*/
 data/auto.cnf
 data/ib*
 data/*.sql
+esdata/*/
+
